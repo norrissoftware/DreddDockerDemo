@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  version: '0.1'
+  title: DreddDemo
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /items:
+    get:
+      description: Returns items
+      operationId: Get Items
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/getItemsResponse'
+    post:
+      description: Create item
+      operationId: Post Item
+      parameters:
+        - name: item
+          in: body
+          description: New item object
+          required: true
+          schema:
+            $ref: '#/definitions/item'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/successResponse'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+  '/items/{name}':
+    get:
+      description: Returns items
+      operationId: Get Item
+      produces:
+        - application/json
+        
+      parameters:
+        - name: name
+          in: path
+          description: name of item to retrieve
+          required: true
+          type: string
+          default: cat
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/item'
+  /nope:
+    get:
+      description: Will never pass
+      operationId: Failing test
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/successResponse'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/errorResponse'
+definitions:
+  getItemsResponse:
+    title: Get items response
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/item'
+  item:
+    title: A single item
+    type: object
+    properties:
+      name:
+        type: string
+      color:
+        type: string
+  successResponse:
+    title: Standard success response
+    type: object
+    properties:
+      success:
+        type: boolean
+  errorResponse:
+    title: Standard error response
+    type: object
+    properties:
+      error:
+        type: string

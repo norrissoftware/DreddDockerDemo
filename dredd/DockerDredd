@@ -1,0 +1,19 @@
+FROM pritunl/archlinux
+RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+RUN rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+RUN pacman -S --noconfirm go nodejs npm git
+RUN npm install -g dredd@stable
+RUN mkdir /go
+ENV GOPATH /go
+ENV PATH $PATH:$GOPATH/bin
+RUN go get github.com/Masterminds/glide
+RUN go install github.com/Masterminds/glide
+
+ENV NODE_PATH /usr/lib/node_modules
+RUN npm install -g sha1
+
+RUN mkdir -p $GOPATH/src/github.com/jasonrichardsmith/DreddDockerDemo
+
+COPY . $GOPATH/src/github.com/jasonrichardsmith/DreddDockerDemo
+
+WORKDIR $GOPATH/src/github.com/jasonrichardsmith/DreddDockerDemo

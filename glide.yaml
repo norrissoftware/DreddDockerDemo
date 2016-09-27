@@ -1,0 +1,3 @@
+package: github.com/jasonrichardsmith/DreddDockerDemo
+import:
+- package: github.com/gorilla/mux
