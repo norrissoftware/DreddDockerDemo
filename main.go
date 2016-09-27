@@ -26,8 +26,8 @@ func init() {
 			Item{"cat", "white"},
 		},
 	}
-	salt := os.Getenv("DEMOSHASALT")
-	if strings.Trim(salt) == "" {
+	salt := strings.TrimSpace(os.Getenv("DEMOSHASALT"))
+	if salt == "" {
 		log.Fatal("illegal salt")
 	}
 	h := sha1.New()
