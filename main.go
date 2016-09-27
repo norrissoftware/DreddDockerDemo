@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -26,7 +27,7 @@ func init() {
 		},
 	}
 	salt := os.Getenv("DEMOSHASALT")
-	if salt == "" {
+	if strings.Trim(salt) == "" {
 		log.Fatal("illegal salt")
 	}
 	h := sha1.New()
