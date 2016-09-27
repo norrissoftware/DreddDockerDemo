@@ -1,10 +1,8 @@
-DIR := ${CURDIR}
-MYSECRET := $(DEMOSHASALT)
 builddredd: 
 	docker build -t dreddtest -f dredd/DockerDredd .
 
 dreddtest: builddredd
 	@docker run\
-		-e "DEMOSHASALT=$(MYSECRET)"\
+		-e "DEMOSHASALT=$(DEMOSHASALT)"\
 		--entrypoint dredd/rundredd.sh\
 		dreddtest
