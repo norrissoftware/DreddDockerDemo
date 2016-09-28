@@ -5,8 +5,10 @@ This demo will build a docker container for [Dredd](https://dredd.readthedocs.io
 API testing with a simple [Go](https://golang.org/)
 web application and utilizing [Node.js](https://dredd.readthedocs.io/en/latest/hooks-nodejs/) hooks for Dredd.
 
-To run test
+To run test you need to set an environment variable and then run the test
+
 ```
+export DEMOSHASALT=yoursecret
 make dreddtest
 ```
 
