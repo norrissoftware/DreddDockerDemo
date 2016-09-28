@@ -17,4 +17,3 @@ Travis CI [![Build Status](https://travis-ci.org/jasonrichardsmith/DreddDockerDe
 
 Circle CI [![CircleCI](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo.svg?style=svg)](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo)
 
-Codeship [ ![Codeship Status for jasonrichardsmith/DreddDockerDemo](https://app.codeship.com/projects/acd30640-67f0-0134-445a-2e0f9d8470fa/status?branch=master)](https://app.codeship.com/projects/176326)
