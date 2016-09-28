@@ -17,3 +17,4 @@ Travis CI [![Build Status](https://travis-ci.org/jasonrichardsmith/DreddDockerDe
 
 Circle CI [![CircleCI](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo.svg?style=svg)](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo)
 
+Snap CI [![Build Status](https://snap-ci.com/jasonrichardsmith/DreddDockerDemo/branch/master/build_image)](https://snap-ci.com/jasonrichardsmith/DreddDockerDemo/branch/master)
