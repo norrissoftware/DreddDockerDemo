@@ -13,4 +13,6 @@ make dreddtest
 Requires
 - Docker
 
-[![Build Status](https://travis-ci.org/jasonrichardsmith/DreddDockerDemo.svg?branch=master)](https://travis-ci.org/jasonrichardsmith/DreddDockerDemo)
+Travis CI [![Build Status](https://travis-ci.org/jasonrichardsmith/DreddDockerDemo.svg?branch=master)](https://travis-ci.org/jasonrichardsmith/DreddDockerDemo)
+
+Circle CI [![CircleCI](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo.svg?style=svg)](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo)
