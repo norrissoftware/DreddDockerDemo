@@ -1,0 +1,34 @@
+API Testing Go in Docker with Dredd
+How to containerize your Go applications with Dredd for easy API testing
+
+Jason Smith
+Software Developer, Container Solutions
+jason.smith@container-solutions.com
+http://container-solutions.com
+@jasonrichardsmi
+
+* Many levels of testing
+
+Unit
+Component
+Acceptance
+Regression
+etc...
+
+This presentation will focus on API testing only
+
+* API Specification
+
+Every API should have one!
+
+- It clarifies your service
+- It is a contract between your clients and your servers*
+- It should be part of your CI/CD pipeline
+
+	*ideally contract is approved before you even start work
+
+* Specification Choices
+
+- Swagger/OpenAPI
+- ApiBlueprint
+
