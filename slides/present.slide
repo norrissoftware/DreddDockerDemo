@@ -7,6 +7,7 @@ jason.smith@container-solutions.com
 http://container-solutions.com
 @jasonrichardsmi
 
+
 * Many levels of testing
 
 Unit
@@ -15,15 +16,23 @@ Acceptance
 Regression
 etc...
 
-This presentation will focus on API testing only
+This presentation will focus
+on API testing only
+
+.background firstbg.jpg
+
+* Requirements
+- Api specification
+- Your application in Go
+- Docker
 
 * API Specification
 
 Every API should have one!
 
 - It clarifies your service
-- It is a contract between your clients and your servers*
 - It should be part of your CI/CD pipeline
+- It is a contract between your clients and your servers*
 
 	*ideally contract is approved before you even start work
 
@@ -32,3 +41,55 @@ Every API should have one!
 - Swagger/OpenAPI
 - ApiBlueprint
 
+* This spec
+.code ../apispec/spec.yml //,/etItemsResponse/ 
+
+* The Go application
+
+A very rudimentary application
+to demonstrate how to API test
+your application.
+
+Written with gorilla mux
+
+With some special handlers to demo the Dredd hooks system.
+
+* Fake auth handler 
+against a secret key concatenated with a user name
+.code ../main.go /^func authMiddleware/,/^}/
+
+.code ../main.go /salt
+.code ../main.go /WriteString/,/nil/
+
+* Handler that will always fail
+.code ../main.go /^func NopeHandler/,/^}/
+ 
+* The DockerFile
+From Arch linux
+.code ../dredd/DockerDredd /FROM
+Install Go, NodeJS, npm, git
+.code ../dredd/DockerDredd /pacman
+Install Dredd
+.code ../dredd/DockerDredd /npm
+Setup Go
+.code ../dredd/DockerDredd /mkdir/,/bin/
+
+* Setup project
+Glide for vendoring
+.code ../dredd/DockerDredd /go get/,/go install/
+Copy your project into the Docker image
+.code ../dredd/DockerDredd /COPY
+Set Working Dir
+.code ../dredd/DockerDredd /WORKDIR
+
+* The Makefile
+Makefiles allow to run locally and in your CI pipeline
+.code ../Makefile
+
+* The start script
+Making your entrypoint a bash script makes
+adding functionality later easir
+.code ../dredd/rundredd.sh
+
+* Dredd Hooks
+We have problem endpoints
