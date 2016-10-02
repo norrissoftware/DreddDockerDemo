@@ -21,5 +21,4 @@ Circle CI [![CircleCI](https://circleci.com/gh/jasonrichardsmith/DreddDockerDemo
 
 Snap CI [![Build Status](https://snap-ci.com/jasonrichardsmith/DreddDockerDemo/branch/master/build_image)](https://snap-ci.com/jasonrichardsmith/DreddDockerDemo/branch/master)
 
-View Presentation Slides here
-[Slides](http://go-talks.appspot.com/github.com/jasonrichardsmith/DreddDockerDemo/slides/present.slide#1)
+View Presentation Slides [here](http://go-talks.appspot.com/github.com/jasonrichardsmith/DreddDockerDemo/slides/present.slide#1).
