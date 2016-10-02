@@ -19,7 +19,7 @@ etc...
 This presentation will focus
 on API testing only
 
-.background firstbg.jpg
+.background https://github.com/jasonrichardsmith/DreddDockerDemo/blob/master/slides/firstbg.jpg?raw=true
 
 * Requirements
 - Api specification
@@ -40,6 +40,8 @@ Every API should have one!
 
 - Swagger/OpenAPI
 - ApiBlueprint
+- RAML
+- ?
 
 * This spec
 .code ../apispec/spec.yml //,/etItemsResponse/ 
@@ -54,14 +56,14 @@ Written with gorilla mux
 
 With some special handlers to demo the Dredd hooks system.
 
-* Fake auth handler 
+* Fake auth handler - POST > /items
 against a secret key concatenated with a user name
 .code ../main.go /^func authMiddleware/,/^}/
 
 .code ../main.go /salt
 .code ../main.go /WriteString/,/nil/
 
-* Handler that will always fail
+* Handler that will always fail - GET > /nope
 .code ../main.go /^func NopeHandler/,/^}/
  
 * The DockerFile
@@ -79,17 +81,100 @@ Glide for vendoring
 .code ../dredd/DockerDredd /go get/,/go install/
 Copy your project into the Docker image
 .code ../dredd/DockerDredd /COPY
+Build the project
+
+.code ../dredd/DockerDredd /RUN cd/,/go build/
+
 Set Working Dir
 .code ../dredd/DockerDredd /WORKDIR
+
+* The start script
+Making your entrypoint a bash script makes
+adding functionality later easier.
+
+Even if it only does one thing
+
+The script
+.code ../dredd/rundredd.sh
+
+In DockerFile
+.code ../dredd/DockerDredd /ENTRYPOINT
+
+* dredd.yml
+
+Get a Dredd config file
+
+	$dredd init
+
+Three lines of note:
+
+Specify a hook files
+.code ../dredd.yml /hookfiles
+
+Specify language of hook file
+.code ../dredd.yml /language
+
+Specify command to start the server
+.code ../dredd.yml /server
+
 
 * The Makefile
 Makefiles allow to run locally and in your CI pipeline
 .code ../Makefile
 
-* The start script
-Making your entrypoint a bash script makes
-adding functionality later easir
-.code ../dredd/rundredd.sh
-
 * Dredd Hooks
+
 We have problem endpoints
+
+- POST > /items Requires Auth
+
+- GET > /nope returns nothing
+
+Dredd needs some help with hooks
+
+* Dredd has a Go Hooks package!
+
+BUT it's broken
+
+* Fallback to NodeJS
+
+Dealing with the header value
+
+.code ../dredd/hooks.js /items/,/\);/
+
+
+Skipping a test that will never pass
+
+.code ../dredd/hooks.js /nope/,/\);/
+
+* Running the test
+	$make dredddtest
+- Only requires Docker
+- Fits into many CI/CD pipelines
+
+* Circle-CI
+.code ../circle.yml
+
+* Travis-CI
+.code ../.travis.yml
+
+* View the entire execution process
+
+Travis CI 
+.link https://travis-ci.org/jasonrichardsmith/DreddDockerDemo#L267 Latest Build
+
+
+* Read More
+
+.link https://www.docker.com/ Docker
+
+.link https://dredd.readthedocs.io/en/latest/ Dredd
+
+.link https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md OpenAPI/Swagger
+
+.link https://github.com/gorilla/mux Gorilla Mux
+
+.link http://github.com/jasonrichardsmith/DreddDockerDemo This Repo
+
+.link http://go-talks.appspot.com/github.com/jasonrichardsmith/DreddDockerDemo/slides/present.slide#1 These Slides
+ 
