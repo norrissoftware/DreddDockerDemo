@@ -2,7 +2,7 @@ API Testing Go in Docker with Dredd
 How to containerize your Go applications with Dredd for easy API testing
 
 Jason Smith
-Software Developer, Container Solutions
+Engineer, Container Solutions
 jason.smith@container-solutions.com
 http://container-solutions.com
 @jasonrichardsmi
@@ -16,8 +16,7 @@ Acceptance
 Regression
 etc...
 
-This presentation will focus
-on API testing only
+This presentation will focus on API testing only
 
 * Requirements
 - Api specification
@@ -42,13 +41,12 @@ Every API should have one!
 - ?
 
 * This spec
-.code ../apispec/spec.yml //,/etItemsResponse/ 
+.code ../apispec/spec.yml //,/response/
+etc... 
 
 * The Go application
 
-A very rudimentary application
-to demonstrate how to API test
-your application.
+A very rudimentary application to demonstrate how to API test your application.
 
 Written with gorilla mux
 
@@ -68,9 +66,9 @@ against a secret key concatenated with a user name
 From Arch linux
 .code ../dredd/DockerDredd /FROM
 Install Go, NodeJS, npm, git
-.code ../dredd/DockerDredd /pacman
+.code ../dredd/DockerDredd /pacman -S
 Install Dredd
-.code ../dredd/DockerDredd /npm
+.code ../dredd/DockerDredd /npm install
 Setup Go
 .code ../dredd/DockerDredd /mkdir/,/bin/
 
@@ -100,7 +98,7 @@ In DockerFile
 
 * dredd.yml
 
-Get a Dredd config file
+You can get a Dredd config file by running
 
 	$dredd init
 
@@ -117,12 +115,12 @@ Specify command to start the server
 
 
 * The Makefile
-Makefiles allow to run locally and in your CI pipeline
+Makefiles allows anyone to run locally and in your CI pipeline
 .code ../Makefile
 
 * Dredd Hooks
 
-We have problem endpoints
+We have problem endpoints that Dredd cannot handle
 
 - POST > /items Requires Auth
 
@@ -148,7 +146,7 @@ Skipping a test that will never pass
 * Running the test
 	$make dredddtest
 - Only requires Docker
-- Fits into many CI/CD pipelines
+- Fits easily into some CI/CD pipelines
 
 * Circle-CI
 .code ../circle.yml
@@ -163,17 +161,16 @@ Travis CI
 
 
 * Read More
+Docker
+.link https://www.docker.com
+Dredd
+.link https://dredd.readthedocs.io/en/latest
+OpenAPI/Swagger
+.link https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
+Gorilla Mux
+.link https://github.com/gorilla/mux
 
-.link https://www.docker.com/ Docker
-
-.link https://dredd.readthedocs.io/en/latest/ Dredd
-
-.link https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md OpenAPI/Swagger
-
-.link https://github.com/gorilla/mux Gorilla Mux
-
-.link http://github.com/jasonrichardsmith/DreddDockerDemo This Repo
-
-.link http://go-talks.appspot.com/github.com/jasonrichardsmith/DreddDockerDemo/slides/present.slide#1 These Slides
-
-github.com/jasonrichardsmith/DreddDockerDemo
+* This demo
+This Repo
+.link http://github.com/jasonrichardsmith/DreddDockerDemo
+Links to the these slides are in the repo
