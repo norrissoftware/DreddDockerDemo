@@ -19,8 +19,6 @@ etc...
 This presentation will focus
 on API testing only
 
-.background https://github.com/jasonrichardsmith/DreddDockerDemo/blob/master/slides/firstbg.jpg?raw=true
-
 * Requirements
 - Api specification
 - Your application in Go
@@ -177,4 +175,5 @@ Travis CI
 .link http://github.com/jasonrichardsmith/DreddDockerDemo This Repo
 
 .link http://go-talks.appspot.com/github.com/jasonrichardsmith/DreddDockerDemo/slides/present.slide#1 These Slides
- 
+
+github.com/jasonrichardsmith/DreddDockerDemo
